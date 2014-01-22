@@ -2,7 +2,10 @@
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from forms import CoachForm
+from django import forms
+#from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseRedirect
+from forms import CoachForm,UserCreationForm
 from models import Coach,School
 def update_coach(request,id=u'0'):
 	if id != None:
@@ -31,4 +34,15 @@ def handle_uploaded_file(f):
 		for chunk in f.chunks():
 			destination.write(chunk)
 		os.remove(file_name)
-		
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            return HttpResponseRedirect("/drive/update_coach.html")
+    else:
+        form = UserCreationForm()
+    return render_to_response("registration/register.html",  RequestContext(request, {
+        'form': form}))		

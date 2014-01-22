@@ -1,0 +1,25 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
+{% block userlinks %}{% url 'django-admindocs-docroot' as docsroot %}{% if docsroot %}<a href="{{ docsroot }}">{% trans 'Documentation' %}</a> / {% endif %} {% trans 'Register user' %} / <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>{% endblock %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; {% trans 'User register' %}
+</div>
+{% endblock %}
+
+{% block title %}{% trans 'User register' %}{% endblock %}
+
+{% block content %}<div id="content-main">
+
+
+<form action="" method="post">{% csrf_token %}
+          {% csrf_token %}
+            {{ form.as_p }}
+              <input type="submit" value="{% trans 'Submit' %}" />
+          </form>
+</div>
+</form></div>
+
+{% endblock %}
