@@ -1,5 +1,5 @@
 # Django settings for mysite project.
-
+#encoding=utf8
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -29,11 +29,17 @@ ALLOWED_HOSTS = []
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+#TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Asia/Shanghai'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+#LANGUAGE_CODE = 'en-us'
+
+LANGUAGE_CODE = 'zh-CN'
+LANGUAGES = (('zh-cn', u'简体中文'), # instead of 'zh-CN'
+                 ('zh-tw', u'繁體中文'), # instead of 'zh-TW'
+                         )
 
 SITE_ID = 1
 
@@ -51,7 +57,7 @@ USE_TZ = True
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
 MEDIA_ROOT = '/home/work/django_prject/easydrive/trunk/mysite/media/'
-
+CKEDITOR_UPLOAD_PATH = "/home/work/django_prject/easydrive/trunk/mysite/media/"
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
@@ -61,7 +67,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = '/home/work/django_prject/easydrive/trunk/mysite/static/'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -72,6 +78,9 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    '/home/work/django_prject/easydrive/trunk/mysite/static/admin',
+    '/home/work/django_prject/easydrive/trunk/mysite/static/ckeditor',
+    '/home/work/django_prject/easydrive/trunk/mysite/static/djangobb_forum',
 )
 
 # List of finder classes that know how to find static files in
@@ -98,6 +107,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'pagination.middleware.PaginationMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -111,7 +121,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    'templates',
+    '/home/work/django_prject/easydrive/trunk/mysite/templates',
 )
 
 INSTALLED_APPS = (
@@ -122,12 +132,19 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'drive',
+    'ckeditor',
+  #  'djangobb_forum',
+    'pagination',
+    'dbe',
+    'blog',
+    'photo',
+    'forum',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
-
+CKEDITOR_RESTRICT_BY_USER=True
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
 # A sample logging configuration. The only tangible logging
@@ -158,4 +175,51 @@ LOGGING = {
             'propagate': True,
         },
     }
-}
+    }
+
+CKEDITOR_CONFIGS = {
+        'awesome_ckeditor': {
+            'toolbar': 'Basic',
+            },
+        'default': {
+            'toolbar': 'Full',
+            'height': 200,
+            'width': 400,
+            },
+        }
+
+HAYSTACK_CONNECTIONS = {
+        'default': {
+            'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+            'URL': 'http://localhost:9001/solr/default',
+            'TIMEOUT': 60 * 5,
+            'INCLUDE_SPELLING': True,
+            'BATCH_SIZE': 100,
+            'EXCLUDED_INDEXES': ['thirdpartyapp.search_indexes.BarIndex'],
+            },
+        'autocomplete': {
+            'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+            'PATH': '/home/search/whoosh_index',
+            'STORAGE': 'file',
+            'POST_LIMIT': 128 * 1024 * 1024,
+            'INCLUDE_SPELLING': True,
+            'BATCH_SIZE': 100,
+            'EXCLUDED_INDEXES': ['thirdpartyapp.search_indexes.BarIndex'],
+            },
+        'slave': {
+            'ENGINE': 'xapian_backend.XapianEngine',
+            'PATH': '/home/search/xapian_index',
+            'INCLUDE_SPELLING': True,
+            'BATCH_SIZE': 100,
+            'EXCLUDED_INDEXES': ['thirdpartyapp.search_indexes.BarIndex'],
+            },
+        'db': {
+            'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+            'EXCLUDED_INDEXES': ['thirdpartyapp.search_indexes.BarIndex'],
+            }
+        }
+EMAIL_HOST = ""
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""
+DEFAULT_FROM_EMAIL = ""
+SERVER_EMAIL = ""
