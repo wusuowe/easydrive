@@ -135,9 +135,9 @@ INSTALLED_APPS = (
     'ckeditor',
   #  'djangobb_forum',
     'pagination',
-    'dbe',
-    'blog',
-    'photo',
+  #  'dbe',
+  #  'blog',
+  #  'photo',
     'forum',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',

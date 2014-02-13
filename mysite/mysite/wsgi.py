@@ -20,10 +20,7 @@ import os
 # mod_wsgi daemon mode with each site in its own daemon process, or use
 # os.environ["DJANGO_SETTINGS_MODULE"] = "mysite.settings"
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
-import sys
-path = '/home/work/drive/'
-if path not in sys.path:
-        sys.path.append(path)
+
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION
 # setting points here.
@@ -34,3 +31,8 @@ application = get_wsgi_application()
 # from helloworld.wsgi import HelloWorldApplication
 # application = HelloWorldApplication(application)
 
+import sys
+path = '/home/lxwsj/zhuyc/mysite/'
+if path not in sys.path:
+        pass
+#        sys.path.append(path)

@@ -34,9 +34,9 @@ urlpatterns = patterns('',
      url(r'^ckeditor/', include('ckeditor.urls')),
 #     url(r'^forum/', include('djangobb_forum.urls',namespace='djangobb')),
 #     url(r"^dbe/mark_done/(\d*)/$", "dbe.views.mark_done"),
-     url(r'^dbe/', include('dbe.urls')),
-     url(r'^blog/', include('blog.urls')),
-     url(r'^photo/', include('photo.urls')),
+#     url(r'^dbe/', include('dbe.urls')),
+#     url(r'^blog/', include('blog.urls')),
+#     url(r'^photo/', include('photo.urls')),
      url(r'^forum/', include('forum.urls')),
 )
 
