@@ -1,4 +1,4 @@
-{% extends "fbase.html" %}
+{% extends "forum/fbase.html" %}
 
 {% block sidebar %} <style type="text/css"> </style> {% endblock %}
 
@@ -20,7 +20,7 @@
     <div class="main">
 
       <a id="new_topic" class="buttont" href=
-        "{% url forum.views.post 'new_thread' pk %}">Start New Topic</a>
+        "{% url "forum.views.post" 'new_thread' pk %}">Start New Topic</a>
         <br />
         <br />
 
@@ -37,13 +37,13 @@
             {% for thread in threads.object_list %}
             <tr>
                 <td {% if forloop.last %}class="last"{% endif %}>
-                <div class="title"> <a href="{% url forum.views.thread thread.pk %}">{{ thread.title }}</a>
+                <div class="title"> <a href="{% url "forum.views.thread" thread.pk %}">{{ thread.title }}</a>
                     </div></td>
                 <td {% if forloop.last %}class="last"{% endif %}>{{ thread.num_replies }}</td>
                 <td {% if forloop.last %}class="last"{% endif %}>
                     {{ thread.last_post.short|linebreaksbr }}</td>
                 <td {% if forloop.last %}class="last"{% endif %}>
-                    <a class="button" href="{% url forum.views.thread thread.pk %}">VIEW</a>
+                    <a class="button" href="{% url "forum.views.thread" thread.pk %}">VIEW</a>
                 </td>
             </tr>
 
