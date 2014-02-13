@@ -54,7 +54,7 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
-WORK_ROOT = '/home/work/easydrive/trunk/mysite'
+WORK_ROOT = '/home/work/mysite'
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
