@@ -11,7 +11,7 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
-from settings import MEDIA_ROOT, MEDIA_URL
+from mysite.settings import MEDIA_ROOT, MEDIA_URL
 from forum.models import *
 
 

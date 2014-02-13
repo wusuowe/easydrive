@@ -54,10 +54,12 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
+WORK_ROOT = '/home/work/easydrive/trunk/mysite'
+
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = '/home/work/django_prject/easydrive/trunk/mysite/media/'
-CKEDITOR_UPLOAD_PATH = "/home/work/django_prject/easydrive/trunk/mysite/media/"
+MEDIA_ROOT = WORK_ROOT+'/media/'
+CKEDITOR_UPLOAD_PATH = WORK_ROOT + "/media/"
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
@@ -67,7 +69,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = '/home/work/django_prject/easydrive/trunk/mysite/static/'
+STATIC_ROOT = WORK_ROOT + '/static/'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -78,9 +80,9 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/work/django_prject/easydrive/trunk/mysite/static/admin',
-    '/home/work/django_prject/easydrive/trunk/mysite/static/ckeditor',
-    '/home/work/django_prject/easydrive/trunk/mysite/static/djangobb_forum',
+    WORK_ROOT + '/static/admin',
+    WORK_ROOT + '/static/ckeditor',
+#    WORK_ROOT + '/static/djangobb_forum',
 )
 
 # List of finder classes that know how to find static files in
@@ -121,7 +123,8 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/work/django_prject/easydrive/trunk/mysite/templates',
+    WORK_ROOT + '/templates',
+
 )
 
 INSTALLED_APPS = (
@@ -131,7 +134,9 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'drive',
+    'django.contrib.admin',
+    'registration',
+#    'drive',
     'ckeditor',
   #  'djangobb_forum',
     'pagination',
@@ -140,7 +145,6 @@ INSTALLED_APPS = (
   #  'photo',
     'forum',
     # Uncomment the next line to enable the admin:
-    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
