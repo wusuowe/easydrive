@@ -55,7 +55,10 @@ USE_L10N = True
 USE_TZ = True
 
 import os
-WORK_ROOT = os.environ['MYSITE_ROOT']
+if os.environ.has_key('MYSITE_ROOT'):
+	WORK_ROOT = os.environ['MYSITE_ROOT']
+else:
+	WORK_ROOT="/home/lxwsj/zhuyc/mysite"
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"

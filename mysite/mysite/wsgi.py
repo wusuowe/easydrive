@@ -35,4 +35,4 @@ import sys
 path = '/home/lxwsj/zhuyc/mysite/'
 if path not in sys.path:
         pass
-#        sys.path.append(path)
+        sys.path.append(path)
