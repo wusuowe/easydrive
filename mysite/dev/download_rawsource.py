@@ -25,9 +25,9 @@ for code in cursor.fetchall():
         query = "select count(*) from Source where code='%s' and `type`='%s'"%(code,k)
         cursor.execute(query)
         if int(cursor.fetchone()[0]) == 0:
-            query = "insert into Source (code,`type`,content)values('%s','%s','%s')"%(code,k,MySQLdb.escape_string(page))
+            query = "insert into Source (code,`type`,url,content)values('%s','%s','%s')"%(code,k,url,MySQLdb.escape_string(page))
         else:
-            query = "update Source set content='%s' where code='%s' and `type`='%s'"%(MySQLdb.escape_string(page),code,k)
+            query = "update Source set content='%s',url='%s' where code='%s' and `type`='%s'"%(MySQLdb.escape_string(page),url,code,k)
 
         print "update %s %s"%(code,k)
         cursor.execute(query)
