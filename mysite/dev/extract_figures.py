@@ -25,7 +25,7 @@ for t in types:
 conn = MySQLdb.connect('localhost','joker','likejoke','finance',charset='utf8')
 cursor = conn.cursor()
 
-query = "select code,`type`,content from Source"
+query = "select code,`type`,content from Source where flag=1"
 cursor.execute(query)
 for code,typ,content in cursor.fetchall():
     updateList = []
@@ -49,8 +49,9 @@ for code,typ,content in cursor.fetchall():
         updateStatement = "update figures set %s where code='%s' and rdate='%s';"%(updateList[i].strip(','),code,dateList[i])
         print initStatement
         print updateStatement
-        cursor.execute(initStatement)
-        cursor.execute(updateStatement)
+        if cursor.execute(initStatement) == 0:
+            cursor.execute(updateStatement)
+        cursor.execute("update Source set flag=0 where code='%s',`type`='%s'"%(code,typ))
         conn.commit()
 
         

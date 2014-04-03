@@ -86,7 +86,8 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     WORK_ROOT + '/static/admin',
     WORK_ROOT + '/static/ckeditor',
-#    WORK_ROOT + '/static/djangobb_forum',
+    WORK_ROOT + '/static/investor',
+    WORK_ROOT + '/static/forum',
 )
 
 # List of finder classes that know how to find static files in
@@ -148,6 +149,7 @@ INSTALLED_APPS = (
   #  'blog',
   #  'photo',
     'forum',
+    'investor',
     # Uncomment the next line to enable the admin:
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',

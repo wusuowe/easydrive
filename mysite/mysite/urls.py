@@ -33,10 +33,11 @@ urlpatterns = patterns('',
      url(r'^ckeditor/', include('ckeditor.urls')),
 #     url(r'^drive/', include('drive.urls')),
      url(r'^forum/', include('forum.urls')),
+     url(r'^investor/', include('investor.urls')),
 )
 
 
 urlpatterns+=patterns('',
-      (r'^^static/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.STATIC_ROOT}),
+      (r'^static/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.STATIC_ROOT}),
 
         )
